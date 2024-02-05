@@ -26,5 +26,6 @@ public class Game {
     private String name;
     private String protagonist;
     private int rating;
+    private String photoUrl;
 
 }
