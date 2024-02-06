@@ -47,7 +47,7 @@ public class GameResource {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteGame(@PathVariable("id") String id){
         gamesService.deleteGame(id);
-        return ResponseEntity.ok("Game deleted successfully!.");
+        return ResponseEntity.ok("Game deleted successfully!");
     }
 
     @GetMapping(path = "/image/{filename}", produces = { IMAGE_PNG_VALUE, IMAGE_JPEG_VALUE })
