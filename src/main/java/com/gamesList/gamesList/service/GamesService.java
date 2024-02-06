@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.swing.text.html.Option;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -40,8 +39,9 @@ public class GamesService {
     public Game createGame(Game game) {
         return gamesRepo.save(game);
     }
-    public void deleteGame(Game game) {
-        gamesRepo.delete(game);
+
+    public void deleteGame(String id) {
+        gamesRepo.deleteById(id);
     }
 
     public String uploadPhoto(String id, MultipartFile file) {

@@ -24,9 +24,8 @@ public class GameResource {
     private final GamesService gamesService;
 
     @PostMapping
-    public ResponseEntity<Game> createGame(@RequestBody Game contact) {
-        //return ResponseEntity.ok().body(contactService.createContact(contact));
-        return ResponseEntity.created(URI.create("/contacts/userID")).body(gamesService.createGame(contact));
+    public ResponseEntity<Game> createGame(@RequestBody Game game) {
+        return ResponseEntity.created(URI.create("/contacts/userID")).body(gamesService.createGame(game));
     }
 
     @GetMapping
@@ -45,7 +44,11 @@ public class GameResource {
         return ResponseEntity.ok().body(gamesService.uploadPhoto(id, file));
     }
 
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteGame(@PathVariable("id") String id){
+        gamesService.deleteGame(id);
+        return ResponseEntity.ok("Game deleted successfully!.");
+    }
 
     @GetMapping(path = "/image/{filename}", produces = { IMAGE_PNG_VALUE, IMAGE_JPEG_VALUE })
     public byte[] getPhoto(@PathVariable("filename") String filename) throws IOException {
