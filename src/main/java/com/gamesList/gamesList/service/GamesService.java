@@ -20,6 +20,7 @@ import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+import static com.gamesList.gamesList.constant.Constant.photoDir;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 @Service
@@ -52,12 +53,14 @@ public class GamesService {
 
     // Java 17 feats
     // (Bi)Function<(param type)..., (return type)>
+    // Function which takes in a Url to a photo of String type, splits the string from the point where there's a ".".
+    // It then takes everything after that index and adds a "." in front. Eg: "my/photo/url.jpg" -> ".jpg"
     private final Function<String, String> fileExtension = (fileName) -> Optional.of(fileName).filter(name -> name.contains("."))
             .map(name -> "." + name.substring(fileName.lastIndexOf(".") + 1)).orElse(".png");
     private final BiFunction<String, MultipartFile, String> photoFunction = (id, image) -> {
         String fileName = id + fileExtension.apply(image.getOriginalFilename());
         try {
-            Path fileStorageLocation = Paths.get("").toAbsolutePath().normalize();
+            Path fileStorageLocation = Paths.get(photoDir).toAbsolutePath().normalize();
             if(!Files.exists(fileStorageLocation)) {
                 Files.createDirectories(fileStorageLocation);
             }
