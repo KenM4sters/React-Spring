@@ -18,25 +18,25 @@ import static org.springframework.util.MimeTypeUtils.IMAGE_JPEG_VALUE;
 import static org.springframework.util.MimeTypeUtils.IMAGE_PNG_VALUE;
 
 @RestController
-@RequestMapping("/contacts")
+@RequestMapping("/games")
 @RequiredArgsConstructor
 public class GameResource {
     private final GamesService gamesService;
 
     @PostMapping
-    public ResponseEntity<Game> createContact(@RequestBody Game contact) {
+    public ResponseEntity<Game> createGame(@RequestBody Game contact) {
         //return ResponseEntity.ok().body(contactService.createContact(contact));
         return ResponseEntity.created(URI.create("/contacts/userID")).body(gamesService.createGame(contact));
     }
 
     @GetMapping
-    public ResponseEntity<Page<Game>> getContacts(@RequestParam(value = "page", defaultValue = "0") int page,
+    public ResponseEntity<Page<Game>> getGames(@RequestParam(value = "page", defaultValue = "0") int page,
                                                   @RequestParam(value = "size", defaultValue = "10") int size) {
         return ResponseEntity.ok().body(gamesService.getAllGames(page, size));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Game> getContact(@PathVariable(value = "id") String id) {
+    public ResponseEntity<Game> getGame(@PathVariable(value = "id") String id) {
         return ResponseEntity.ok().body(gamesService.getGame(id));
     }
 

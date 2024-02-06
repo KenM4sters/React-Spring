@@ -25,6 +25,7 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 @Service
 @Slf4j
+// If a POST request doesn't go through properly, then it won't go through at all
 @Transactional(rollbackOn = Exception.class)
 @RequiredArgsConstructor
 public class GamesService {
@@ -67,7 +68,7 @@ public class GamesService {
             Files.copy(image.getInputStream(), fileStorageLocation.resolve(id + fileExtension.apply(image.getOriginalFilename())), REPLACE_EXISTING);
             return ServletUriComponentsBuilder.
                     fromCurrentContextPath().
-                    path("/games/image" + fileName).toUriString();
+                    path("/games/image/" + fileName).toUriString();
         } catch(Exception exception) {
             throw new RuntimeException(("Unable to save image"));
 

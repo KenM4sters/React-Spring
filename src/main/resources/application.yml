@@ -1,4 +1,23 @@
 spring:
   datasource:
-    url: jdbc:postgresql://192.168
+    url: jdbc:postgresql://127.0.0.1:5432/GamesList
+    username: samuelbrookman
+    password: Coronglay414!
+  jpa:
+    database-platform: org.hibernate.dialect.PosgreSQLInnoDBDialect
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+server:
+  port: 8080
 

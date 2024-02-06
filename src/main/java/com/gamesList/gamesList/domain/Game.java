@@ -17,6 +17,8 @@ import org.hibernate.annotations.UuidGenerator;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+// If a POST request doesn't include a name, id, rating etc... then it won't show up.
+// if removed, they'll be set to NULL
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class Game {
     @Id
