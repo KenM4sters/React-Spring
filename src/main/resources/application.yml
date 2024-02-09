@@ -1,8 +1,10 @@
 spring:
+  profiles:
+    active: ${ACTIVE_PROFILE:dev}
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5432/GamesList
-    username: samuelbrookman
-    password: Coronglay414!
+    url: jdbc:postgresql://${POSTGRESQL_SERVER}/${POSTGRESQL_DB}
+    username: ${POSTGRESQL_USER}
+    password: ${POSTGRESQL_PASSWORD}
   jpa:
     database-platform: org.hibernate.dialect.PosgreSQLInnoDBDialect
     generate-ddl: true
@@ -19,5 +21,5 @@ spring:
       max-file-size: 1000MB
       max-request-size: 1000MB
 server:
-  port: 8080
+  port: ${PORT}
 
